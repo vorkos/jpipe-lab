@@ -3,7 +3,6 @@ pipeline {
                 /* 
                 * initial 
                 */
-    echo "Branch is - ${env.BRANCH_NAME}"
     stages {
         stage('checkout scm') {
             steps {
@@ -13,6 +12,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'test'
+                echo "Branch is - ${env.BRANCH_NAME}"
             }
         }
         stage('users') {
