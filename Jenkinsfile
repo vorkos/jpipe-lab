@@ -9,6 +9,7 @@ pipeline {
             steps {
                 checkout scm
             }
+        }
         stage('Build') {
             steps {
                 echo 'test'
