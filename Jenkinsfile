@@ -1,6 +1,5 @@
 pipeline {
     agent any
-    node {
                 /* 
                 * initial 
                 */
@@ -20,6 +19,8 @@ pipeline {
     )
     }
     stages {
+        node {
+
         stage('checkout scm') {
             steps {
                 checkout scm
@@ -47,6 +48,6 @@ pipeline {
                 echo 'iptables'
             }
         }
-    }
+        }
     }
 }
