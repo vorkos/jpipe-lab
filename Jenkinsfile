@@ -38,7 +38,7 @@ pipeline {
                 }
             }
             steps {
-                echo 'users'
+                build job: 'users', parameters: [[$class: 'StringParameterValue', name: 'BRANCH', value: BRANCH]]
             }
         }
         stage('iptables') {
@@ -48,7 +48,7 @@ pipeline {
                 }
             }
             steps {
-                echo 'iptables'
+                build job: 'iptables', parameters: [[$class: 'StringParameterValue', name: 'BRANCH', value: BRANCH]]
             }
         }
     }
