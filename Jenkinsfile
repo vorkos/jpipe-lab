@@ -19,12 +19,17 @@ pipeline {
     )
     }
     stages {
-        /*
         stage('checkout scm') {
             steps {
-                checkout scm
+                checkout([
+                $class: 'GitSCM',
+                branches: [[name: "*/${params.BRANCH}"]],
+                doGenerateSubmoduleConfigurations: scm.doGenerateSubmoduleConfigurations,
+                extensions: scm.extensions,
+                userRemoteConfigs: scm.userRemoteConfigs
+    ])
             }
-        }*/
+        }
         stage('Build') {
             steps {
                 echo 'test'
@@ -34,7 +39,7 @@ pipeline {
         stage('users') {
             when {
                 expression {
-                sh(returnStatus: true, script: "git checkout origin/${params.BRANCH};git diff --name-only HEAD~1..HEAD| grep '.*users.*' > /dev/null") == 0
+                sh(returnStatus: true, script: "git diff --name-only HEAD~1..HEAD| grep '.*users.*' > /dev/null") == 0
                 }
             }
             steps {
@@ -44,7 +49,7 @@ pipeline {
         stage('iptables') {
             when {
                 expression {
-                sh(returnStatus: true, script: "git checkout origin/${params.BRANCH};git diff --name-only HEAD~1..HEAD| grep '.*iptables.*' > /dev/null") == 0
+                sh(returnStatus: true, script: "git diff --name-only HEAD~1..HEAD| grep '.*iptables.*' > /dev/null") == 0
                 }
             }
             steps {
