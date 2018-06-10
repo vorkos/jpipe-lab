@@ -24,6 +24,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'test'
+                sh "echo $branch"
                 echo "Branch is - ${env.BRANCH_NAME}"
             }
         }
