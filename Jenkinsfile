@@ -12,7 +12,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'test'
-                echo "Branch is - ${env.BRANCH_NAME}"
+                echo "Branch is - ${BRANCH_NAME}"
             }
         }
         stage('users') {
