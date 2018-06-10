@@ -33,7 +33,9 @@ pipeline {
         }
         stage('users') {
             when {
-                changeset 'users/*'
+                expression {
+                sh(returnStatus: true, script: 'git diff --name-only $GIT_PREVIOUS_COMMIT $GIT_COMMIT | grep ".*users.*" > /dev/null') == 0
+                }
             }
             steps {
                 echo 'users'
@@ -42,8 +44,8 @@ pipeline {
         stage('iptables') {
             when {
                 expression {
-                sh(returnStatus: true, script: 'git diff --name-only $GIT_PREVIOUS_COMMIT $GIT_COMMIT | grep ".*iptables.*" ') == 0
-            }
+                sh(returnStatus: true, script: 'git diff origin/'+${params.BRANCH}+' --name-only $GIT_PREVIOUS_COMMIT $GIT_COMMIT | grep ".*iptables.*" > /dev/null') == 0
+                }
             }
             steps {
                 echo 'iptables'
