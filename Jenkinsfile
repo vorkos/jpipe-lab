@@ -7,7 +7,7 @@ pipeline {
         pipelineTriggers([
         [$class: 'GenericTrigger',
             genericVariables: [
-            [expressionType: 'JSONPath', key: 'branch', value: '$.branch'],
+            [expressionType: 'JSONPath', key: 'branch', value: '$.branch']],
             printContributedVariables: true,
             printPostContent: true,
             regexpFilterText: '',

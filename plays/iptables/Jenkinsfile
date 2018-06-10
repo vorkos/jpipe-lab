@@ -7,7 +7,6 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'sh "running iptables playbook"'
-                echo "iptables"
             }
         }
     }
