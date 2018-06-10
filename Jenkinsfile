@@ -3,18 +3,18 @@ pipeline {
                 /* 
                 * initial 
                 */
-    triggers {
-    GenericTrigger(
-     genericVariables: [
-      [key: 'branch', value: '$.branch']
-     ],
-     causeString: 'Triggered on $branch',
-     regexpFilterExpression: '',
-     regexpFilterText: '',
-     printContributedVariables: true,
-     printPostContent: true
-    )
-  }
+    properties([
+        pipelineTriggers([
+        [$class: 'GenericTrigger',
+            genericVariables: [
+            [expressionType: 'JSONPath', key: 'branch', value: '$.branch'],
+            printContributedVariables: true,
+            printPostContent: true,
+            regexpFilterText: '',
+            regexpFilterExpression: ''
+        ]
+        ])
+    ])
     stages {
         stage('checkout scm') {
             steps {
@@ -23,9 +23,11 @@ pipeline {
         }
         stage('Build') {
             steps {
+                sh '''
                 echo 'test'
-                sh "echo $branch"
+                echo $branch
                 echo "Branch is - ${env.BRANCH_NAME}"
+                '''
             }
         }
         stage('users') {
