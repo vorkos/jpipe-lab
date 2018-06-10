@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'sh "running users playbook"'
+                echo 'sh "running users playbook" '
             }
         }
     }
