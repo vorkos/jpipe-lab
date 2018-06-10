@@ -41,7 +41,9 @@ pipeline {
         }
         stage('iptables') {
             when {
-                changeset 'iptables/*'
+                expression {
+                sh(returnStatus: true, script: 'git diff  origin/master --name-only | grep "^auth.*" > /dev/null') == 0
+            }
             }
             steps {
                 echo 'iptables'
