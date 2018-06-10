@@ -42,7 +42,7 @@ pipeline {
         stage('iptables') {
             when {
                 expression {
-                sh(returnStatus: true, script: 'git diff  origin/master --name-only | grep "^auth.*" > /dev/null') == 0
+                sh(returnStatus: true, script: 'git diff --name-only $GIT_PREVIOUS_COMMIT $GIT_COMMIT | grep ".*iptables.*" ') == 0
             }
             }
             steps {
