@@ -19,8 +19,6 @@ pipeline {
     )
     }
     stages {
-        node {
-
         stage('checkout scm') {
             steps {
                 checkout scm
@@ -47,7 +45,6 @@ pipeline {
             steps {
                 echo 'iptables'
             }
-        }
         }
     }
 }
