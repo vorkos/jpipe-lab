@@ -44,7 +44,7 @@ pipeline {
         stage('iptables') {
             when {
                 expression {
-                sh(returnStatus: true, script: "git diff --name-only $GIT_PREVIOUS_COMMIT $GIT_COMMIT | grep '.*iptables.*' > /dev/null") == 0
+                sh(returnStatus: true, script: "git checkout origin/${params.BRANCH};git diff --name-only HEAD~1..HEAD| grep '.*iptables.*' > /dev/null") == 0
                 }
             }
             steps {
