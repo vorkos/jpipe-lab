@@ -19,11 +19,12 @@ pipeline {
     )
     }
     stages {
+        /*
         stage('checkout scm') {
             steps {
                 checkout scm
             }
-        }
+        }*/
         stage('Build') {
             steps {
                 echo 'test'
