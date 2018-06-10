@@ -1,5 +1,6 @@
 pipeline {
     agent any
+    node {
                 /* 
                 * initial 
                 */
@@ -46,5 +47,6 @@ pipeline {
                 echo 'iptables'
             }
         }
+    }
     }
 }
