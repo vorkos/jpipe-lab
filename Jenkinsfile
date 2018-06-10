@@ -6,6 +6,18 @@ pipeline {
     parameters {
         string(name: 'BRANCH', defaultValue: 'default', description: 'Branch name')
     }
+    triggers {
+    GenericTrigger(
+     genericVariables: [
+      [key: 'BRANCH', value: '$.branch']
+     ],
+     causeString: 'Triggered on $BRANCH',
+     regexpFilterExpression: '',
+     regexpFilterText: '',
+     printContributedVariables: true,
+     printPostContent: true
+    )
+    }
     stages {
         stage('checkout scm') {
             steps {
