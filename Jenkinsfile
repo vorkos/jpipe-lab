@@ -3,7 +3,7 @@ pipeline {
                 /* 
                 * initial 
                 */
-    properties([
+    options([
         pipelineTriggers([
         [$class: 'GenericTrigger',
             genericVariables: [
