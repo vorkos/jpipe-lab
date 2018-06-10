@@ -14,11 +14,8 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh '''
                 echo 'test'
-                #echo $branch
                 echo "Branch is - ${params.BRANCH}"
-                '''
             }
         }
         stage('users') {
